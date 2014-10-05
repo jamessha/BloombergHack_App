@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>TickerWatch</title>
+  </head>
+  <body>
+    <a href="/tickerwatch/">Return to the homepage.</a><br />
+
+    {% csrf_token %}
+
+    <p>{{ user }}</p>
+    <p>{{ stocks }}</p>
+  </body>
+</html>
+

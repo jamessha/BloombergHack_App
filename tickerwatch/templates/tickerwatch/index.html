@@ -1,0 +1,14 @@
+{% if user.is_authenticated %}
+  <h1>Hello {{ user.username }}!</h1>
+{% else %}
+  <h1>Hello!</h1>
+{% endif %}
+{% if user.is_authenticated %}
+  <a href="/tickerwatch/profile/">Profile</a>
+  <a href="/tickerwatch/add_stock/">Add Stock</a>
+  <a href="/tickerwatch/logout/">Logout</a>
+{% else %}
+<a href="/tickerwatch/register/">Register Here</a>
+<a href="/tickerwatch/login/">Login</a>
+{% endif %}
+
