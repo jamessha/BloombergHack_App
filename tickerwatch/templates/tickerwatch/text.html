@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>TickerWatch</title>
+  </head>
+
+  <body>
+    <h1> Trigger Event! </h1>
+    <strong> </strong> <br/>
+        <form id="text" method="post" action="/tickerwatch/text/">
+            {% csrf_token %}
+            <input type="submit" value="Trigger an Update from Apple!" />
+        </form>
+  </body>
+</html>

@@ -6,6 +6,8 @@ from django.template import RequestContext
 from tickerwatch.forms import UserForm, UserProfileForm, StockForm
 from tickerwatch.models import Stock, UserProfile
 from django.contrib.auth.decorators import login_required
+import phone_messenger
+import feedparser
 
 # Create your views here.
 def index(request):
@@ -172,3 +174,46 @@ def profile(request):
   return render(request, 'tickerwatch/profile.html',
       {'profile': profile, 'stocks': stocks})
 
+def text(request):
+  context = RequestContext(request)
+  if request.method == 'POST':
+    ticker = 'AAPL'
+    # Do Pull request
+    rss_url = 'http://finance.yahoo.com/rss/headline?s=%s' % ticker
+    feed = feedparser.parse(rss_url)
+    for item in feed['items']:
+      textmsg = str(item['title']).strip()
+      msg = '<<' + ticker + '>> ' + textmsg + ' - from TickerWatch'
+      phone_messenger.send_text('5103886932', 'att', msg)
+      break
+    return HttpResponseRedirect('/tickerwatch/')
+  else:
+   return render_to_response('tickerwatch/text.html', {}, context)
+
+
+def text_demo(request):
+  context = RequestContext(request)
+  submitted = False
+  if request.method == 'POST':
+    ticker = request.POST['ticker']
+    number = request.POST['number']
+    carrier = request.POST['carrier']
+    max_num = int(request.POST['max_num'])
+    # Clean up Ticker
+    ticker = ticker.upper()
+    ticker = ticker.strip()
+    # Do Pull request
+    rss_url = 'http://finance.yahoo.com/rss/headline?s=%s' % ticker
+    feed = feedparser.parse(rss_url)
+    curSend = 0
+    for item in feed['items']:
+      text1 = str(ticker).strip()
+      text2 = str(item['title']).strip()
+      msg = '<<' + text1 + '>> ' + text2 + ' - from TickerWatch'
+      phone_messenger.send_text(number, carrier, msg)
+      curSend += 1
+      if (curSend >= max_num): break
+    submitted = True
+    return render_to_response('tickerwatch/text_demo.html',{'submitted': submitted}, context)
+  else:
+   return render_to_response('tickerwatch/text_demo.html', {'submitted': submitted}, context)
