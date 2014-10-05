@@ -175,12 +175,12 @@ def __helper_format_phone(raw_num):
     retVal += raw_num[i]
   return retVal
 
-
 @login_required
 def profile(request):
   context = RequestContext(request)
   stocks = Stock.objects.filter(users__id=request.user.id)
   stocks = [stock.ticker for stock in stocks]
+  apple_str = 'AAPL'
   profile = UserProfile.objects.get(user__id=request.user.id)
   phone_num = __helper_format_phone(profile.phone_number)
 
