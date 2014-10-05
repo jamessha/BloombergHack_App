@@ -83,7 +83,10 @@ while(True):
     for number in numbers:
       print number
       # Replace this number with the number from Users for not demo
-      msg.send_text(number, 'att', story)
+      try:
+        msg.send_text(number, 'att', story)
+      except:
+        continue
   time.sleep(SLEEP_TIME)
 
 
