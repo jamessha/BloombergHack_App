@@ -1,11 +1,20 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
-  <head>
-      <title>TickerWatch</title>
-  </head>
+ <head>
+
+  <link href="{% static "foundation/css/foundation.css" %}" rel="stylesheet"/>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link href="/static/foundation/css/app.css" rel="stylesheet"/>
+
+  <script src="js/vendor/modernizr.js"></script>
+
+  <title>{% block title %}TickerWatch{% endblock title %}</title>
+
+</head>
 
   <body>
-    <h1>Register with TickerWatch</h1>
+    <h2>Register with TickerWatch</h2>
 
     {% if registered %}
     <strong>Thank you for registering!</strong>

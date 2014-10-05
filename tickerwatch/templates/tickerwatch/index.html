@@ -1,14 +1,44 @@
-{% if user.is_authenticated %}
-  <h1>Hello {{ user.username }}!</h1>
-{% else %}
-  <h1>Hello!</h1>
-{% endif %}
-{% if user.is_authenticated %}
-  <a href="/tickerwatch/profile/">Profile</a>
-  <a href="/tickerwatch/add_stock/">Add Stock</a>
-  <a href="/tickerwatch/logout/">Logout</a>
-{% else %}
-<a href="/tickerwatch/register/">Register Here</a>
-<a href="/tickerwatch/login/">Login</a>
-{% endif %}
+<!doctype html>
+{% load staticfiles %}
+<html class="no-js" lang="en">
+ <head>
 
+  <link href="{% static "foundation/css/foundation.css" %}" rel="stylesheet"/>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link href="/static/foundation/css/app.css" rel="stylesheet"/>
+
+  <script src="js/vendor/modernizr.js"></script>
+
+  <title>{% block title %}TickerWatch{% endblock title %}</title>
+
+</head>
+<body>
+<!-- 	<div class="row">
+		<div class="large-12 columns">
+			<h1>TickerWatch</h1>
+		</div>
+	</div> -->
+
+	<div class="row">
+		<div class="large-5 columns">
+			<img height="400px" width="400px" src="{% static "foundation/img/tickerwatch.png" %}">
+		</div>
+		<div class="large-7 columns" style="padding-top: 50px; padding-left: 50px">
+			{% if user.is_authenticated %}
+			  <h1 class="frontpage">Hello {{ user.username }}!</h1>
+			{% else %}
+			  <h1 class="frontpage">Welcome</h1>
+			{% endif %}
+			{% if user.is_authenticated %}
+			  <a href="/tickerwatch/profile/">Profile</a>
+			  <a href="/tickerwatch/add_stock/">Add Stock</a>
+			  <a href="/tickerwatch/logout/">Logout</a>
+			{% else %}
+
+			<a href="/tickerwatch/register/" class="button">Sign Up for TicketWatch</a><br />
+			<a href="/tickerwatch/login/" class="button">Already have an account? Log in</a>
+			{% endif %}
+		</div>
+	</div>
+</body>
+</html>

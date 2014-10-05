@@ -1,0 +1,28 @@
+.large-5, .large-7 {
+	margin-top: 100px;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+	font-family: Source Sans Pro;
+}
+
+.frontpage {
+	font-size: 6rem;
+	font-weight: 900;
+	color: rgba(5, 163, 176, 1);
+	margin-left: 20px
+}
+
+h2 {
+	
+}
+
+.button {
+	font-family: Source Sans Pro;
+	width: 400px;
+	margin-bottom: 10px;
+	padding: 15px 0px;
+	font-weight: 900;
+	font-size: 1.25rem;
+	margin-left: 15px;
+}
