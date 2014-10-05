@@ -22,9 +22,9 @@ def query_cycle():
 		time.sleep(SLEEP_TIME)
 
 if __name__ == "__main__":
-	if ('runserver' in sys.argv):
+	if ('runloop' in sys.argv):
+		query_cycle()
+	else:
 		os.environ.setdefault("DJANGO_SETTINGS_MODULE", "BloombergHack_App.settings")
 		from django.core.management import execute_from_command_line
 		execute_from_command_line(sys.argv)
-	if ('runloop' in sys.argv):
-		query_cycle()
