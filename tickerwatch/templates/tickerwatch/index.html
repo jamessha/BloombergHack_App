@@ -20,10 +20,10 @@
 	</div> -->
 
 	<div class="row">
-		<div class="large-5 columns">
+		<div class="large-5 columns" id="front">
 			<img height="400px" width="400px" src="{% static "foundation/img/tickerwatch.png" %}">
 		</div>
-		<div class="large-7 columns" style="padding-top: 50px; padding-left: 50px">
+		<div class="large-7 columns" id="front" style="padding-top: 50px; padding-left: 50px">
 			{% if user.is_authenticated %}
 			  <h1 class="frontpage">Hello {{ user.username }}!</h1>
 			{% else %}
@@ -36,7 +36,7 @@
 			{% else %}
 
 			<a href="/tickerwatch/register/" class="button">Sign Up for TicketWatch</a><br />
-			<a href="/tickerwatch/login/" class="button">Already have an account? Log in</a>
+			<a href="/tickerwatch/login/" class="button">Already have an account? Sign In</a>
 			{% endif %}
 		</div>
 	</div>

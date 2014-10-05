@@ -14,13 +14,21 @@
 </head>
 
   <body>
-    <h2>Register with TickerWatch</h2>
-
+    <div class="row">
+    <div class="large-5 columns" id="front">
+      <a href='index.html'>
+      <img height="400px" width="400px" src="{% static "foundation/img/tickerwatch.png" %}">
+    </a>
+    </div>
+    <div class="large-7 columns" style="padding-top: 80px; padding-left: 50px">
     {% if registered %}
-    <strong>Thank you for registering!</strong>
-    <a href="/tickerwatch/">Return to the homepage.</a><br />
+    <div style="font-size: 2rem; margin-top: 160px;">
+    <strong style="margin-left:10px">Thank you for registering!</strong>
+    </div>
+    <br />
+    <a href="/tickerwatch/" style="margin-left:10px;font-size:1.5rem">Return to the homepage.</a><br />
     {% else %}
-    <strong>Register here!</strong><br />
+    <h2>Create a TickerWatch Account</h2>
 
     <form id="user_form" method="post" action="/tickerwatch/register/"
           enctype="multipart/form-data">
@@ -34,8 +42,11 @@
       {{ profile_form.as_p }}
 
       <!-- Provide a button to click to submit the form. -->
-      <input type="submit" name="submit" value="Register" />
+      <input class="button" style="margin-left: 0px; width:500px" type="submit" name="submit" value="Register" />
     </form>
     {% endif %}
+  </div>
+</div>
+  </row>
   </body>
 </html>

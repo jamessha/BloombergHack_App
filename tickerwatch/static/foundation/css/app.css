@@ -1,9 +1,10 @@
-.large-5, .large-7 {
+#front {
 	margin-top: 100px;
 }
 
 h1, h2, h3, h4, h5, h6, p, a {
 	font-family: Source Sans Pro;
+	font-weight: 900;
 }
 
 .frontpage {
@@ -14,7 +15,10 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
 h2 {
-	
+	font-size: 2.5rem;
+	color: rgba(5, 163, 176, 1);
+	text-align: center;
+	margin-top: 30px;
 }
 
 .button {
@@ -25,4 +29,27 @@ h2 {
 	font-weight: 900;
 	font-size: 1.25rem;
 	margin-left: 15px;
+}
+
+#user_form {
+	margin-left: 10px;
+	width: 500px;
+}
+
+#user_form label {
+	font-size: 1.25rem;
+}
+
+#login_form {
+	width: 500px;
+	margin-left: 10px;
+}
+
+#login_form input {
+	width: 500px;
+}
+
+#login_form label {
+	font-size: 1.25rem;
+	margin-bottom: 0px;
 }
