@@ -1,16 +1,38 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
   <head>
-      <title>TickerWatch</title>
+      <link href="{% static "foundation/css/foundation.css" %}" rel="stylesheet"/>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link href="/static/foundation/css/app.css" rel="stylesheet"/>
+
+  <script src="js/vendor/modernizr.js"></script>
+
+  <title>{{ profile.user }} - TickerWatch</title>
   </head>
   <body>
-    <a href="/tickerwatch/">Return to the homepage.</a><br />
+  	<div class="row">
+  	<div class="large-5 columns" id="front">
+      <a href='/tickerwatch/'>
+      <img height="400px" width="400px" src="{% static "foundation/img/tickerwatch.png" %}">
+    </a>
+    </div>
+    <div class="large-7 columns" style="padding-top: 130px; padding-left: 50px">
 
     {% csrf_token %}
 
-    <p>{{ profile.user }}</p>
-    <p>{{ profile.phone_number }}</p>
-    <p>{{ stocks }}</p>
+    <h2>{{ profile.user }}'s Stock Portfolio</h2>
+    <p style="margin-left:10px">Alerts will be delivered to {{ phone_num }}.</p>
+
+    {% for stock in stocks %}
+    	<div class="buttonlame" style="width:100px">{{ stock }}</div>
+    {% endfor %}
+
+    <br /><br />
+    <a style="margin-left:10px" href="/tickerwatch/">Return to the homepage.</a><br />
+	</div>
+
+	</div>
   </body>
 </html>
 

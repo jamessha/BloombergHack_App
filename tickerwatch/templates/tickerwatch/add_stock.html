@@ -1,19 +1,33 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
   <head>
-      <title>TickerWatch</title>
+      <link href="{% static "foundation/css/foundation.css" %}" rel="stylesheet"/>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link href="/static/foundation/css/app.css" rel="stylesheet"/>
+
+  <script src="js/vendor/modernizr.js"></script>
+
+  <title>Add A Stock - TickerWatch</title>
   </head>
 
   <body>
-    <h1>Add a Stock</h1>
+    <div class="row">
+    <div class="large-5 columns" id="front">
+      <a href='/tickerwatch/'>
+      <img height="400px" width="400px" src="{% static "foundation/img/tickerwatch.png" %}">
+    </a>
+    </div>
+    <div class="large-7 columns" style="padding-top: 130px; padding-left: 50px">
 
-    <a href="/tickerwatch/">Return to the homepage.</a><br />
+    <h2>Add A Stock</h2>
     {% if stock_added %}
-    <strong>Stock Added!</strong><br />
+    <div class="flashmessage">
+    <strong style="color: green">Stock added!</strong></div><br />
     {% elif already_added %}
-    <strong>Stock Already Added!</strong><br />
+    <div class="flashmessage">
+    <strong style="color: rgba(209, 44, 44, 1)">Stock already in portfolio, try another!</strong></div><br />
     {% endif %}
-    <strong>Add a Stock</strong><br />
 
     <form id="stock_form" method="post" action="/tickerwatch/add_stock/"
           enctype="multipart/form-data">
@@ -26,7 +40,11 @@
       {{ stock_form.as_p }}
 
       <!-- Provide a button to click to submit the form. -->
-      <input type="submit" name="submit" value="add_stock" />
+      <input type="submit" class="button" style="margin-left: 0; width:500px" name="submit" value="Add Stock to Your Portfolio" />
     </form>
+
+    <a style="margin-left: 10px" href="/tickerwatch/">Return to the homepage.</a><br />
+  </div>
+  </div>
   </body>
 </html>

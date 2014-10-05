@@ -21,18 +21,20 @@
 
 	<div class="row">
 		<div class="large-5 columns" id="front">
+			      <a href='/tickerwatch/'>
 			<img height="400px" width="400px" src="{% static "foundation/img/tickerwatch.png" %}">
+			</a>
 		</div>
 		<div class="large-7 columns" id="front" style="padding-top: 50px; padding-left: 50px">
 			{% if user.is_authenticated %}
-			  <h1 class="frontpage">Hello {{ user.username }}!</h1>
+			  <h1 class="frontpage" style="font-size: 5.5rem; margin-top: 20px">Hello {{ user.username }}!</h1>
 			{% else %}
 			  <h1 class="frontpage">Welcome</h1>
 			{% endif %}
 			{% if user.is_authenticated %}
-			  <a href="/tickerwatch/profile/">Profile</a>
-			  <a href="/tickerwatch/add_stock/">Add Stock</a>
-			  <a href="/tickerwatch/logout/">Logout</a>
+			  <a href="/tickerwatch/profile/" class="button" style="width:150px">Your Profile</a>
+			  <a href="/tickerwatch/add_stock/" class="button" style="width:150px">Add A Stock</a>
+			  <a href="/tickerwatch/logout/" class="button" style="width:150px">Sign Out</a>
 			{% else %}
 
 			<a href="/tickerwatch/register/" class="button">Sign Up for TicketWatch</a><br />
