@@ -163,6 +163,18 @@ def add_stock(request):
     {'stock_form': stock_form, 'stock_added': stock_added, 'already_added': already_added},
     context)
 
+def __helper_format_phone(raw_num):
+  retVal = '('
+  for i in range(0, 3):
+    retVal += raw_num[i]
+  retVal += ') '
+  for i in range(3, 6):
+    retVal += raw_num[i]
+  retVal += '-'
+  for i in range(6, 10):
+    retVal += raw_num[i]
+  return retVal
+
 
 @login_required
 def profile(request):
@@ -170,9 +182,10 @@ def profile(request):
   stocks = Stock.objects.filter(users__id=request.user.id)
   stocks = [stock.ticker for stock in stocks]
   profile = UserProfile.objects.get(user__id=request.user.id)
+  phone_num = __helper_format_phone(profile.phone_number)
 
   return render(request, 'tickerwatch/profile.html',
-      {'profile': profile, 'stocks': stocks})
+      {'profile': profile, 'phone_num':phone_num, 'stocks': stocks})
 
 def text(request):
   context = RequestContext(request)
