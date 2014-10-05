@@ -136,8 +136,8 @@ def add_stock(request):
     # If the form is valid...
     ticker = request.POST['ticker']
     if stock_form.is_valid():
-      stock = Stock.objects.get(ticker=ticker)
-      if not stock:
+      has_stock = Stock.objects.filter(ticker=ticker).count() > 0
+      if not has_stock:
         stock_form.save()
       stock = Stock.objects.get(ticker=ticker)
       if not Stock.objects.filter(ticker=ticker, users__id=request.user.id):
