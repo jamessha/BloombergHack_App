@@ -135,8 +135,6 @@ def add_stock(request):
 
     # If the form is valid...
     ticker = request.POST['ticker']
-    ticker = str(ticker).upper()
-    ticker = ticker.strip()
     if stock_form.is_valid():
       stock = Stock.objects.get(ticker=ticker)
       if not stock:
