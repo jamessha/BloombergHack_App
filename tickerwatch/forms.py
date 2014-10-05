@@ -25,3 +25,12 @@ class StockForm(forms.ModelForm):
     model = Stock
     fields = ('ticker',)
 
+class TextForm(forms.ModelForm):
+  class Meta:
+      model = Stock
+      fields = ('ticker',)
+
+class TextDemoForm(forms.ModelForm):
+  class Meta:
+      model = Stock
+      fields = ('ticker',)

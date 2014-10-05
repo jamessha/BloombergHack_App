@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>TickerWatch</title>
+  </head>
+
+  <body>
+    <h1> Mobile Alerts Demostration </h1>
+
+    <strong> Text Demonstration </strong><br />
+
+        {% if submitted %}
+        <strong> Message sent! </strong>
+        <a href="/tickerwatch/text_demo/"> Send another text</a><br />
+        {% else %}
+        <form id="text_demo" method="post" action="/tickerwatch/text_demo/">
+            {% csrf_token %}
+            Ticker: <input type="text" name="ticker" value="" size="50" />
+            <br /><br/>
+            Phone Number: <input type="text" name="number" value="" size="50" />
+            <br /><br />
+            Maximum Number of Articles: <input type="text" name="max_num" value="" size="50" />
+            <br/><br />
+            Carrier: <input type="text" name="carrier" value="" size="50" />
+            <br/>
+            Please choose from: <strong> AT&T, Verizon, Boost, Virgin </strong>
+            <br /><br />
+
+            <input type="submit" value="Send Update!" />
+        </form>
+    {% endif %}
+  </body>
+</html>
