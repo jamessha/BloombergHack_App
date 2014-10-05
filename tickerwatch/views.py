@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from tickerwatch.forms import UserForm, UserProfileForm, StockForm
-from tickerwatch.models import Stock
+from tickerwatch.models import Stock, UserProfile
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -42,11 +42,7 @@ def register(request):
       # This delays saving the model until we're ready to avoid integrity problems.
       profile = profile_form.save(commit=False)
       profile.user = user
-
-      # Did the user provide a profile picture?
-      # If so, we need to get it from the input form and put it in the UserProfile model.
-      if 'picture' in request.FILES:
-        profile.picture = request.FILES['picture']
+      profile.phone_number = request.POST['phone_number']
 
       # Now we save the UserProfile model instance.
       profile.save()
@@ -171,7 +167,8 @@ def profile(request):
   context = RequestContext(request)
   stocks = Stock.objects.filter(users__id=request.user.id)
   stocks = [stock.ticker for stock in stocks]
+  profile = UserProfile.objects.get(user__id=request.user.id)
 
   return render(request, 'tickerwatch/profile.html',
-      {'user': request.user, 'stocks': stocks})
+      {'profile': profile, 'stocks': stocks})
 

@@ -8,7 +8,8 @@
 
     {% csrf_token %}
 
-    <p>{{ user }}</p>
+    <p>{{ profile.user }}</p>
+    <p>{{ profile.phone_number }}</p>
     <p>{{ stocks }}</p>
   </body>
 </html>

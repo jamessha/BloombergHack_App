@@ -8,7 +8,6 @@ class UserProfile(models.Model):
 
     # The additional attributes we wish to include.
     phone_number = models.CharField(max_length=10)
-    picture = models.ImageField(upload_to='profile_images', blank=True)
 
     # Override the __unicode__() method to return out something meaningful!
     def __unicode__(self):
