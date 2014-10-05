@@ -80,11 +80,12 @@ while(True):
     users = Stock.objects.get(ticker=ticker).users
     users = [UserProfile.objects.get(user__id=user.id) for user in users.all()]
     numbers = [user.phone_number for user in users]
-    for number in numbers:
-      print number
+    carriers = [user.carrier for user in users]
+    for carrier, number in zip(carriers, numbers):
+      print carrier, number
       # Replace this number with the number from Users for not demo
       try:
-        msg.send_text(number, 'att', story)
+        msg.send_text(number, carrier, story)
       except:
         continue
   time.sleep(SLEEP_TIME)

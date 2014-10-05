@@ -45,6 +45,7 @@ def register(request):
       profile = profile_form.save(commit=False)
       profile.user = user
       profile.phone_number = request.POST['phone_number']
+      profile.carrier = request.POST['carrier']
 
       # Now we save the UserProfile model instance.
       profile.save()
@@ -173,6 +174,7 @@ def format_phone_num(raw_num):
   retVal += '-'
   for i in range(6, 10):
     retVal += raw_num[i]
+  return retVal
 
 
 
@@ -182,11 +184,11 @@ def profile(request):
   stocks = Stock.objects.filter(users__id=request.user.id)
   stocks = [stock.ticker for stock in stocks]
   profile = UserProfile.objects.get(user__id=request.user.id)
-
+  
   phone_num = format_phone_num(profile.phone_number)
 
   return render(request, 'tickerwatch/profile.html',
-      {'profile': profile, 'stocks': stocks})
+      {'profile': profile, 'stocks': stocks, 'phone_num': phone_num, 'carrier': profile.carrier})
 
 def text(request):
   context = RequestContext(request)

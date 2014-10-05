@@ -16,6 +16,8 @@ class UserForm(forms.ModelForm):
     fields = ('username', 'password')
 
 class UserProfileForm(forms.ModelForm):
+  carrier = forms.ChoiceField(choices=((('att', 'AT&T'), ('verizon', 'Verizon'))), initial='att', required=True)
+
   class Meta:
     model = UserProfile
     fields = ('phone_number',)

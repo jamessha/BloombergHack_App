@@ -8,6 +8,7 @@ class UserProfile(models.Model):
 
     # The additional attributes we wish to include.
     phone_number = models.CharField(max_length=10)
+    carrier = models.CharField(max_length=15, default='att')
 
     # Override the __unicode__() method to return out something meaningful!
     def __unicode__(self):

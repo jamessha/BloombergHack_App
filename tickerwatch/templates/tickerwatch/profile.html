@@ -22,7 +22,7 @@
     {% csrf_token %}
 
     <h2>{{ profile.user }}'s Stock Portfolio</h2>
-    <p style="margin-left:10px">Alerts will be delivered to {{ phone_num }}.</p>
+    <p style="margin-left:10px">Alerts will be delivered to {{ phone_num }} at {{ carrier }}.</p>
 
     {% for stock in stocks %}
     	<div class="buttonlame" style="width:100px">{{ stock }}</div>
