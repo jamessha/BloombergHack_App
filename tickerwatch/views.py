@@ -135,9 +135,11 @@ def add_stock(request):
 
     # If the form is valid...
     ticker = request.POST['ticker']
+    ticker = str(ticker).upper()
+    ticker = ticker.strip()
     if stock_form.is_valid():
-      has_stock = Stock.objects.filter(ticker=ticker).count() > 0
-      if not has_stock:
+      stock = Stock.objects.get(ticker=ticker)
+      if not stock:
         stock_form.save()
       stock = Stock.objects.get(ticker=ticker)
       if not Stock.objects.filter(ticker=ticker, users__id=request.user.id):
@@ -163,29 +165,30 @@ def add_stock(request):
     {'stock_form': stock_form, 'stock_added': stock_added, 'already_added': already_added},
     context)
 
-def __helper_format_phone(raw_num):
+def format_phone_num(raw_num):
   retVal = '('
-  for i in range(0, 3):
+  for i in range(0,3):
     retVal += raw_num[i]
   retVal += ') '
-  for i in range(3, 6):
+  for i in range(3,6):
     retVal += raw_num[i]
   retVal += '-'
   for i in range(6, 10):
     retVal += raw_num[i]
-  return retVal
+
+
 
 @login_required
 def profile(request):
   context = RequestContext(request)
   stocks = Stock.objects.filter(users__id=request.user.id)
   stocks = [stock.ticker for stock in stocks]
-  apple_str = 'AAPL'
   profile = UserProfile.objects.get(user__id=request.user.id)
-  phone_num = __helper_format_phone(profile.phone_number)
+
+  phone_num = format_phone_num(profile.phone_number)
 
   return render(request, 'tickerwatch/profile.html',
-      {'profile': profile, 'phone_num':phone_num, 'stocks': stocks})
+      {'profile': profile, 'stocks': stocks})
 
 def text(request):
   context = RequestContext(request)
@@ -221,7 +224,7 @@ def text_demo(request):
     curSend = 0
     for item in feed['items']:
       text1 = str(ticker).strip()
-      text2 = str(item['title']).strip()
+      text2 = str(item['title'].replace(u"\u2018", "'")).strip()
       msg = '<<' + text1 + '>> ' + text2 + ' - from TickerWatch'
       phone_messenger.send_text(number, carrier, msg)
       curSend += 1
