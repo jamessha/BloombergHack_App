@@ -229,6 +229,7 @@ def text_demo(request):
       text2 = text2.replace(u"\u2019", "'")
       text2 = text2.replace(u"\u201c", "\"")
       text2 = text2.replace(u"\u201d", "\"")
+      text2 = text2.replace(":", "-")
       text2 = str(text2).strip()
       msg = '<<' + text1 + '>> ' + text2 + ' - from TickerWatch'
       phone_messenger.send_text(number, carrier, msg)
